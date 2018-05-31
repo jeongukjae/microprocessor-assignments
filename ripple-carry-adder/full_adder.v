@@ -3,5 +3,5 @@ module full_adder(in0, in1, cin, out, cout);
 	output out, cout;
 
 	assign out = in0 ^ in1 ^ cin;
-	assign cout = ((in0 ^ in1) & cin) | (in0 & in1);
+	assign cout = ((in0 | in1) & ~(in0 & in1) & cin) | (in0 & in1);
 endmodule
