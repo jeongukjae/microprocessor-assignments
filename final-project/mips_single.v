@@ -53,19 +53,19 @@ module mips_single(clk, reset);
 
     // module instantiations
 
-    reg32		PC(, , , );
+    reg32		PC(clk, reset, pc_next, pc);
 
-    add32 		PCADD(, 32'd4, );
+    add32 		PCADD(pc, 32'd4, pc_incr);
 
-    add32 		BRADD(, , );
+    add32 		BRADD(b_offset, pc_incr, b_tgt);
 
-    reg_file	RFILE(, , , , , , , ); 
+    reg_file	RFILE(clk, RegWrite, rs, rt, rfile_wn, rfile_rd1, rfile_rd2, rfile_wd); 
 
-    alu 		ALU(, , , , );
+    alu 		ALU(Operation, rfile_rd1, alu_b, alu_out, Zero);
 
-    rom32 		IMEM(, );
+    rom32 		IMEM(pc, instr);
 
-    mem32 		DMEM(, , , , , );
+    mem32 		DMEM(clk, MemRead, MemWrite, alu_out, rfile_rd2, rfile_wd);
 
     and  		BR_AND(PCSrc, Branch, Zero);
 
@@ -77,7 +77,11 @@ module mips_single(clk, reset);
 
     mux2 #(32)	WRMUX(MemtoReg, alu_out, dmem_rdata, rfile_wd);
 
-    control_single CTL (, , , ,  , , , , );
+    control_single CTL (opcode, RegDst, ALUSrc, MemtoReg, RegWrite, MemRead, MemWrite, Branch, ALUOp);
 
-    alu_ctl 	ALUCTL(, , );
+    alu_ctl 	ALUCTL(ALUOp, funct, Operation);
+
+    always @(posedge clk) begin
+      $display($time, " pc: %h", pc_next);
+    end
 endmodule
