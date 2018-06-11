@@ -34,16 +34,16 @@ module rom32(address, data_out);
     if (address_select == 1)
     begin
       case (mem_offset) 
-          5'd0 : data_out = { 6'd35, 5'd0, 5'd2, 16'd4            };  // lw $2, 4($0)     
-          5'd1 : data_out = {                                     };  // lw $3, 8($0)    
-          5'd2 : data_out = {                                     };  // lw $4, 20($0)   
-          5'd3 : data_out = {                                     };  // add $5, $0, $0  
-          5'd4 : data_out = { 6'd0, 5'd5, 5'd2, 5'd5, 5'd0, 6'd32 };  //  
-          5'd5 : data_out = {                                     };  // slt $6, $4, $5  
-          5'd6 : data_out = { 6'd4, 5'd6, 5'd0, -16'd3            };  // beq $6, $0, -3 
-          5'd7 : data_out = {                                     };  // add $7, $3, $2
-          5'd8 : data_out = {                                     };  // add $7, $5, $7
-          5'd9 : data_out = { 6'd43, 5'd0, 5'd7, 16'd0            };  // 
+          5'd0 : data_out = { 6'd35, 5'd0, 5'd2, 16'd4            };  // lw $2, 4($0)
+          5'd1 : data_out = { 6'd35, 5'd0, 5'd3, 16'd8            };  // lw $3, 8($0)
+          5'd2 : data_out = { 6'd35, 5'd0, 5'd4, 16'd20           };  // lw $4, 20($0)
+          5'd3 : data_out = { 6'd0, 5'd0, 5'd0, 5'd5, 5'd0, 6'd32 };  // add $5, $0, $0
+          5'd4 : data_out = { 6'd0, 5'd5, 5'd2, 5'd5, 5'd0, 6'd32 };  // add $5, $5, $2
+          5'd5 : data_out = { 6'd0, 5'd4, 5'd5, 5'd4, 5'd0, 6'd42 };  // slt $6, $4, $5
+          5'd6 : data_out = { 6'd4, 5'd6, 5'd0, -16'd3            };  // beq $6, $0, -3
+          5'd7 : data_out = { 6'd0, 5'd3, 5'd2, 5'd7, 5'd0, 6'd32 };  // add $7, $3, $2
+          5'd8 : data_out = { 6'd0, 5'd5, 5'd7, 5'd7, 5'd0, 6'd32 };  // add $7, $5, $7
+          5'd9 : data_out = { 6'd43, 5'd0, 5'd7, 16'd0            };  // sw $7, 0($0)
           // add more cases here as desired
           default data_out = 32'hxxxx;
       endcase
