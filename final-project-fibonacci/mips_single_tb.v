@@ -8,7 +8,7 @@ module mips_single_tb;
     reset = 1;
     clk = 1;
     #2 clk = ~clk;
-    for (i = 0; i < 100; i = i + 1) begin
+    for (i = 0; i < 200; i = i + 1) begin
       #2 clk = ~clk; reset = 0;
     end
   end
