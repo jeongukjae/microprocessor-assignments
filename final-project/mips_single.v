@@ -65,7 +65,7 @@ module mips_single(clk, reset);
 
     rom32 		IMEM(pc, instr);
 
-    mem32 		DMEM(clk, MemRead, MemWrite, alu_out, rfile_rd2, rfile_wd);
+    mem32 		DMEM(clk, MemRead, MemWrite, alu_out, rfile_rd2, dmem_rdata);
 
     and  		BR_AND(PCSrc, Branch, Zero);
 
