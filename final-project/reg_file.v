@@ -43,5 +43,40 @@ module reg_file(clk, RegWrite, RN1, RN2, WN, RD1, RD2, WD);
       file_array[WN] <= WD;
       $display($time, " reg_file[%d] <= %d (Write)", WN, WD);
     end
+  
+  initial begin
+    $dumpfile("final-project.vcd");
+    $dumpvars(1, file_array[1],
+      file_array[2],
+      file_array[3],
+      file_array[4],
+      file_array[5],
+      file_array[6],
+      file_array[7],
+      file_array[8],
+      file_array[9],
+      file_array[10],
+      file_array[11],
+      file_array[12],
+      file_array[13],
+      file_array[14],
+      file_array[15],
+      file_array[16],
+      file_array[17],
+      file_array[18],
+      file_array[19],
+      file_array[20],
+      file_array[21],
+      file_array[22],
+      file_array[23],
+      file_array[24],
+      file_array[25],
+      file_array[26],
+      file_array[27],
+      file_array[28],
+      file_array[29],
+      file_array[30],
+      file_array[31]);
+  end
 endmodule
 
